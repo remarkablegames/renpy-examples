@@ -2,6 +2,10 @@
 
 label end:
 
+    scene black
+
+    "{b}End{/b}."
+
     # This ends the game.
 
     return
