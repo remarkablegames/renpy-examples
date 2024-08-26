@@ -11,6 +11,9 @@ label start:
     menu:
         "Which example do you want to see?"
 
+        "Dialogue":
+            jump dialogue
+
         "Text":
             jump text
 
