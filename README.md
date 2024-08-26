@@ -1,18 +1,17 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/remarkablegames/renpy-template/master/game/gui/window_icon.png" alt="Ren'Py Template">
+  <img src="https://raw.githubusercontent.com/remarkablegames/renpy-examples/master/game/gui/window_icon.png" alt="Ren'Py Logo">
 </p>
 
-# renpy-template
+# Ren'Py Examples
 
-![release](https://img.shields.io/github/v/release/remarkablegames/renpy-template)
-[![build](https://github.com/remarkablegames/renpy-template/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablegames/renpy-template/actions/workflows/build.yml)
-[![lint](https://github.com/remarkablegames/renpy-template/actions/workflows/lint.yml/badge.svg)](https://github.com/remarkablegames/renpy-template/actions/workflows/lint.yml)
+[![build](https://github.com/remarkablegames/renpy-examples/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablegames/renpy-examples/actions/workflows/build.yml)
+[![lint](https://github.com/remarkablegames/renpy-examples/actions/workflows/lint.yml/badge.svg)](https://github.com/remarkablegames/renpy-examples/actions/workflows/lint.yml)
 
-📖 Write visual novels with Ren'Py Template.
+📖 Understand how to write visual novels with Ren'Py examples.
 
 Play the game on:
 
-- [remarkablegames](https://remarkablegames.org/renpy-template)
+- [remarkablegames](https://remarkablegames.org/renpy-examples)
 
 ## Prerequisites
 
@@ -33,25 +32,9 @@ sudo ln -sf "$(realpath renpy-sdk/renpy.sh)" /usr/local/bin/renpy
 Clone the repository to the `Projects Directory`:
 
 ```sh
-git clone https://github.com/remarkablegames/renpy-template.git
-cd renpy-template
+git clone https://github.com/remarkablegames/renpy-examples.git
+cd renpy-examples
 ```
-
-Rename the project:
-
-```sh
-git grep -l 'Renpy Template' | xargs sed -i '' -e 's/Renpy Template/My Novel/g'
-```
-
-```sh
-git grep -l 'renpy-template' | xargs sed -i '' -e 's/renpy-template/my-novel/g'
-```
-
-Replace the assets:
-
-- `web-presplash.jpg`
-- `game/gui/main_menu.png`
-- `game/gui/window_icon.png`
 
 ## Run
 
