@@ -14,6 +14,9 @@ label start:
         "Dialogue":
             jump dialogue
 
+        "Drag and Drop":
+            jump drag_and_drop
+
         "Text":
             jump text
 
