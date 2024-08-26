@@ -1,0 +1,15 @@
+name: lint
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ren'Py
+        uses: remarkablegames/setup-renpy@v1
+
+      - name: Lint script
+        run: renpy-cli game lint

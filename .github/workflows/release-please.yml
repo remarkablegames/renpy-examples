@@ -1,0 +1,70 @@
+name: release-please
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
+    steps:
+      - name: Release Please
+        uses: googleapis/release-please-action@v4
+        id: release
+
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+    if: ${{ needs.release.outputs.release_created }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ren'Py
+        uses: remarkablegames/setup-renpy@v1
+        with:
+          web: true
+
+      - name: Remove extraneous files packages
+        run: rm -rf screenshots
+
+      - name: Build packages
+        run: renpy-launcher distribute . --dest ../dists
+
+      - name: Rename packages
+        run: |
+          # e.g., "../dists/psych-101-1.2.3-linux.tar.bz2" -> "../dists/linux.tar.bz2"
+          for filename in ../dists/*; do mv "$filename" "../dists/${filename##*-}"; done
+
+      - name: Build web
+        run: |
+          renpy-launcher web_build . --destination ../dists/web
+          cp web-presplash.jpg ../dists/web/web-presplash.jpg
+
+      - name: Setup butler
+        uses: remarkablegames/setup-butler@v1
+
+      # https://www.renpy.org/doc/html/build.html#var-build.itch_channels
+      - name: Upload to itch.io
+        run: |
+          for i in "web web" "linux.tar.bz2 linux" "mac.zip osx" "market.zip win-osx-linux" "pc.zip win-linux" "win.zip win"
+          do
+            set -- $i
+            butler push ../dists/$1 ${{ github.repository }}:$2 --userversion-file version.txt
+          done
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+
+      - name: Upload Release Artifact
+        run: gh release upload ${{ needs.release.outputs.tag_name }} $(ls ../dists/*.zip)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

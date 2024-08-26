@@ -1,0 +1,37 @@
+name: build
+on: [push, pull_request]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ren'Py
+        uses: remarkablegames/setup-renpy@v1
+        with:
+          web: true
+
+      - name: Build web
+        run: |
+          renpy-launcher web_build . --destination web
+          cp web-presplash.jpg web/web-presplash.jpg
+
+      - name: Deploy
+        if: github.ref_name == 'master'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: web
+
+      - name: Upload artifacts
+        if: github.ref_name == 'master'
+        uses: actions/upload-artifact@v4
+        with:
+          name: web_build
+          path: web
