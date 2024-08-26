@@ -1,1 +1,1 @@
-# Renamed to `game/story/start.rpy`
+# Renamed to `game/examples/start.rpy`
