@@ -29,4 +29,34 @@ label dialogue:
     e @ happy -concerned "My anger is temporarily suspended..."
     e "HOWEVER !"
 
+    # Automatically changes the expression when the first line is finished showing. This only makes sense when the user doesn't have text speed set all the way up.
+    show eileen concerned
+    e "Sometimes, I feel sad.{nw}"
+    show eileen happy
+    extend " But I usually quickly get over it!"
+
+    window show # shows the window with the default transition, if any.
+    pause       # the window is shown during this pause.
+    window hide # hides the window.
+    pause       # the window is hidden during this pause.
+
+    # Ren'Py supports monologue mode. When dialogue is inside triple-quoted strings, Ren'Py will break the dialogue up into blocks at blank lines. Each block is then used to create its own say statement.
+    """
+    This is the first line of narration. It's longer than the other two
+    lines, so it has to wrap.
+
+    This is the second line of narration.
+
+    This is the third line of narration.
+    """
+
+    e """
+    This is the first line of dialogue. It's longer than the other two
+    lines, so it has to wrap.
+
+    This is the second line of dialogue.
+
+    This is the third line of dialogue.
+    """
+
     jump start
