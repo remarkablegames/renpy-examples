@@ -17,6 +17,9 @@ label start:
         "Drag and Drop":
             jump drag_and_drop
 
+        "RPG Stats":
+            jump rpg_stats
+
         "Text":
             jump text
 
