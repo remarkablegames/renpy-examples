@@ -17,6 +17,9 @@ label start:
         "Drag and Drop":
             jump drag_and_drop
 
+        "Map":
+            jump map
+
         "RPG Stats":
             jump rpg_stats
 
