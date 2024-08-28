@@ -26,5 +26,8 @@ label start:
         "Text":
             jump text
 
+        "Tooltip":
+            jump tooltip
+
         "End":
             jump end
