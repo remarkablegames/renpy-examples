@@ -11,6 +11,9 @@ label start:
     menu:
         "Which example do you want to see?"
 
+        "Creator-Defined Statements (CDS)":
+            jump creator_defined_statements
+
         "Dialogue":
             jump dialogue
 
