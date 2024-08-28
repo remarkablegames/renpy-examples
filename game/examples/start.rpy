@@ -17,6 +17,9 @@ label start:
         "Drag and Drop":
             jump drag_and_drop
 
+        "Image":
+            jump image
+
         "Map":
             jump map
 
