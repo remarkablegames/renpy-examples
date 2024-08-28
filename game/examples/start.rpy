@@ -26,6 +26,9 @@ label start:
         "Map":
             jump map
 
+        "Python":
+            jump python
+
         "RPG Stats":
             jump rpg_stats
 
