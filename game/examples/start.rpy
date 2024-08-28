@@ -18,7 +18,7 @@ label start:
             jump drag_and_drop
 
         "Image":
-            jump image
+            jump image_example
 
         "Map":
             jump map
