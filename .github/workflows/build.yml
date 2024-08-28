@@ -15,7 +15,7 @@ jobs:
       - name: Setup Ren'Py
         uses: remarkablegames/setup-renpy@v1
         with:
-          cli-version: 8.2.1
+          cli-version: 8.2.3
           web: true
 
       - name: Build web
