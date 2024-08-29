@@ -6,7 +6,7 @@ label map:
     pause
 
 # https://www.renpy.org/doc/html/screens.html
-screen map:
+screen map():
     add "map/bg map.jpg"
 
     # https://www.renpy.org/doc/html/screens.html#imagebutton

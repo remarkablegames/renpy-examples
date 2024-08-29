@@ -11,15 +11,14 @@ python early:
 
         return choices
 
-
     def next_random(choices):
         return renpy.random.choice(choices)
 
-
     def lint_random(parsed_object):
         for i in parsed_object:
-            renpy.error(renpy.check_text_tags(i.what))
-
+            check = renpy.check_text_tags(i.block[0].what)
+            if check:
+                renpy.error(check)
 
     renpy.register_statement(
         name="random",

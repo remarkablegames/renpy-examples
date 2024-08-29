@@ -41,7 +41,7 @@ label drag_and_drop:
 
     jump start
 
-screen drag_sample1:
+screen drag_sample1():
     draggroup:
         drag:
             xpos 0.25
@@ -73,7 +73,7 @@ screen drag_sample1:
                 ypadding 20
                 text "Draggable"
 
-screen drag_sample2:
+screen drag_sample2():
     draggroup:
         drag:
             drag_name "circle"
@@ -121,7 +121,7 @@ screen drag_sample2:
             draggable False
             droppable True
 
-screen drag_sample3:
+screen drag_sample3():
     draggroup:
         drag:
             drag_name "The Left Circle"
