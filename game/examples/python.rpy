@@ -1,5 +1,5 @@
 # https://www.renpy.org/doc/html/python.html
-label python:
+label python_example:
 
     "You flipped a coin."
     $ coinflip = renpy.random.choice([True, False])
