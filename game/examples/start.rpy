@@ -41,5 +41,8 @@ label start:
         "Tooltip":
             jump tooltip
 
+        "Voice":
+            jump voice
+
         "End":
             jump end
