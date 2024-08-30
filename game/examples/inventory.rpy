@@ -1,53 +1,54 @@
 ﻿# https://discover-with-mia.itch.io/master-inventory-management-in-renpy-complete-tutorial
-default inventory_icon = [
-    "images/inventory/1.png",
-    "images/inventory/2.png",
-    "images/inventory/3.png",
-    "images/inventory/4.png",
-    "images/inventory/5.png",
-    "images/inventory/6.png",
+default items = [
+    {
+        "id": "1",
+        "name": "Item A",
+        "description": "Item A description",
+        "image": "inventory/1.png",
+    },
+    {
+        "id": "2",
+        "name": "Item B",
+        "description": "Item B description",
+        "image": "inventory/2.png",
+    },
+    {
+        "id": "3",
+        "name": "Item C",
+        "description": "Item C description",
+        "image": "inventory/3.png",
+    },
+    {
+        "id": "4",
+        "name": "Item D",
+        "description": "Item D description",
+        "image": "inventory/4.png",
+    },
+    {
+        "id": "5",
+        "name": "Item E",
+        "description": "Item E description",
+        "image": "inventory/5.png",
+    },
+    {
+        "id": "6",
+        "name": "Item F",
+        "description": "Item F description",
+        "image": "inventory/6.png",
+    },
 ]
 
-default item_name = {
-    "images/inventory/1.png": "Item A",
-    "images/inventory/2.png": "Item B",
-    "images/inventory/3.png": "Item C",
-    "images/inventory/4.png": "Item D",
-    "images/inventory/5.png": "Item E",
-    "images/inventory/6.png": "Item F",
-}
-
-default description = {
-    "images/inventory/1.png": "Item A description",
-    "images/inventory/2.png": "Item B description",
-    "images/inventory/3.png": "Item C description",
-    "images/inventory/4.png": "Item D description",
-    "images/inventory/5.png": "Item E description",
-    "images/inventory/6.png": "Item F description",
-}
-
-default name_item = ""
-default story_name_item = ""
-default show_description = ""
 default show_item = ""
 default open_inventory = False
+default choices = ["1", "2", "3", "4", "5", "6"]
 
-default choices = [
-    "images/inventory/1.png",
-    "images/inventory/2.png",
-    "images/inventory/3.png",
-    "images/inventory/4.png",
-    "images/inventory/5.png",
-    "images/inventory/6.png",
-]
-
-default using_item = {
-    "images/inventory/1.png": True,
-    "images/inventory/2.png": True,
-    "images/inventory/3.png": True,
-    "images/inventory/4.png": True,
-    "images/inventory/5.png": True,
-    "images/inventory/6.png": True,
+default item_used = {
+    "1": False,
+    "2": False,
+    "3": False,
+    "4": False,
+    "5": False,
+    "6": False,
 }
 
 screen inventory_button():
@@ -60,8 +61,8 @@ screen inventory_button():
             action [Show("inventory_screen"), Hide("inventory_button")]
 
         imagebutton:
-            idle "images/inventory/backpack.png"
-            hover "images/inventory/backpack.png"
+            idle "inventory/backpack.png"
+            hover "inventory/backpack.png"
             action [Show("inventory_screen"), Hide("inventory_button")]
 
 screen inventory_screen():
@@ -71,22 +72,20 @@ screen inventory_screen():
         xalign 0.5
         yalign 0.2
 
-        for item in inventory_icon:
-            if item in choices:
+        for item in items:
+            if item["id"] in choices:
                 frame:
                     imagebutton:
-                        idle item
+                        idle item["image"]
                         action [
-                            SetVariable("name_item", (item_name.get(item))),
-                            SetVariable("show_description", (description.get(item))),
-                            SetVariable("show_item", item),
+                            SetVariable("show_item", item["id"]),
                             ToggleVariable("open_inventory", True)
                         ]
-            elif item in inventory_icon:
+            else:
                 frame:
                     background Solid("#000")
-                    xsize 136
-                    ysize 136
+                    xsize 140
+                    ysize 140
 
     if open_inventory:
         frame:
@@ -95,25 +94,25 @@ screen inventory_screen():
             yalign 1.0
 
             vbox:
-                for item in inventory_icon:
-                    if item in choices and item in show_item:
-                        text name_item
-                        image item
-                        text show_description
+                for item in items:
+                    if item["id"] in choices and item["id"] == show_item:
+                        text item["name"]
+                        image item["image"]
+                        text item["description"]
 
                         frame:
                             xalign 1.0
                             yalign 1.0
 
-                            if using_item[item]:
+                            if item_used[item["id"]]:
                                 textbutton "Use":
-                                    action [
-                                        RemoveFromSet(choices, item),
-                                        Notify(item_name[item])
-                                    ]
+                                    action Notify(item["name"] + " can't be used")
                             else:
                                 textbutton "Use":
-                                    action Notify(item_name[item] + " can't be used now...")
+                                    action [
+                                        RemoveFromSet(choices, item["id"]),
+                                        Notify(item["name"])
+                                    ]
 
     textbutton "Close Inventory":
         xalign 1.0
