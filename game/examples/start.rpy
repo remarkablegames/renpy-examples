@@ -23,6 +23,9 @@ label start:
         "Image":
             jump image_example
 
+        "Inventory":
+            jump inventory
+
         "Map":
             jump map
 
