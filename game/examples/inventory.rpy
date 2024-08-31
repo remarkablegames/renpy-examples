@@ -5,51 +5,53 @@ default items = [
         "name": "Item A",
         "description": "Item A description",
         "image": "inventory/1.png",
+        "unlocked": True,
+        "used": False,
     },
     {
         "id": "2",
         "name": "Item B",
         "description": "Item B description",
         "image": "inventory/2.png",
+        "unlocked": True,
+        "used": False,
     },
     {
         "id": "3",
         "name": "Item C",
         "description": "Item C description",
         "image": "inventory/3.png",
+        "unlocked": True,
+        "used": False,
     },
     {
         "id": "4",
         "name": "Item D",
         "description": "Item D description",
         "image": "inventory/4.png",
+        "unlocked": True,
+        "used": False,
     },
     {
         "id": "5",
         "name": "Item E",
         "description": "Item E description",
         "image": "inventory/5.png",
+        "unlocked": True,
+        "used": False,
     },
     {
         "id": "6",
         "name": "Item F",
         "description": "Item F description",
         "image": "inventory/6.png",
+        "unlocked": True,
+        "used": False,
     },
 ]
 
 default show_item = ""
 default open_inventory = False
-default choices = ["1", "2", "3", "4", "5", "6"]
-
-default item_used = {
-    "1": False,
-    "2": False,
-    "3": False,
-    "4": False,
-    "5": False,
-    "6": False,
-}
 
 screen inventory_button():
     hbox:
@@ -73,7 +75,7 @@ screen inventory_screen():
         yalign 0.2
 
         for item in items:
-            if item["id"] in choices:
+            if item["unlocked"] and not item["used"]:
                 frame:
                     imagebutton:
                         idle item["image"]
@@ -95,7 +97,7 @@ screen inventory_screen():
 
             vbox:
                 for item in items:
-                    if item["id"] in choices and item["id"] == show_item:
+                    if item["id"] == show_item:
                         text item["name"]
                         image item["image"]
                         text item["description"]
@@ -104,13 +106,14 @@ screen inventory_screen():
                             xalign 1.0
                             yalign 1.0
 
-                            if item_used[item["id"]]:
+                            if item["used"]:
                                 textbutton "Use":
                                     action Notify(item["name"] + " can't be used")
+
                             else:
                                 textbutton "Use":
                                     action [
-                                        RemoveFromSet(choices, item["id"]),
+                                        ToggleDict(item, "used", True),
                                         Notify(item["name"])
                                     ]
 
