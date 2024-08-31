@@ -11,11 +11,11 @@ init python:
     def items_are_available() -> bool:
         return any(item["available"] for item in inventory.values())
 
-    def select_default_item() -> tuple[any, any]:
-        for item_id, item_info in inventory.items():
-            if item_info["available"]:
-                return item_id, item_info
-        return None, None
+    def get_first_available_item_id() -> str:
+        for item_id, item_data in inventory.items():
+            if item_data["available"]:
+                return item_id
+        return ""
 
     # handle the drag and drop interaction
     # update global state when an item is dropped onto a character
@@ -68,10 +68,8 @@ default characters = {
 }
 
 default current_character = "Sylvie"
-default last_given_item = None
-
-default selected_info = ""
-default selected_item = ""
+default last_given_item = ""
+default selected_item_id = ""
 
 # screen for the main character interaction, displaying available items
 screen interact_with_characters():
@@ -100,26 +98,23 @@ screen interact_with_characters():
                 xalign 0.5
 
                 vbox:
-                    for item_id, item_info in inventory.items():
-                        if item_info["available"]:
-                            textbutton f"{item_info['name']} - {item_info['description']}":
-                                action [
-                                    SetVariable('selected_item', item_id),
-                                    SetVariable('selected_info', item_info),
-                                ]
+                    for item_id, item_data in inventory.items():
+                        if item_data["available"]:
+                            textbutton f"{item_data['name']} - {item_data['description']}":
+                                action SetVariable('selected_item_id', item_id)
 
                         else:
                             text "??? - ???"
 
-        if selected_item:
+        if selected_item_id:
             draggroup:
                 drag:
-                    drag_name selected_item
+                    drag_name selected_item_id
                     droppable False
                     dragged character_dragged
                     xalign 0.1
                     yalign 0.8
-                    image selected_info["image"]
+                    image inventory[selected_item_id]["image"]
 
                 drag:
                     drag_name current_character
@@ -130,7 +125,7 @@ screen interact_with_characters():
 
 label drag_and_drop_inventory:
 
-    $ selected_item, selected_info = select_default_item()
+    $ selected_item_id = get_first_available_item_id()
 
     call screen interact_with_characters
 
