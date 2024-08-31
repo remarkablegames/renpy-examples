@@ -22,6 +22,9 @@ label text:
     # Ren'Py will close all tags that are open at the end of the text block.
     "{size=+20}This is big!"
 
+    # https://www.renpy.org/doc/html/text.html#fonts
+    "{font=OldLondon.ttf}Ren'Py supports TrueType/OpenType fonts and collections, and Image-Based fonts.{/font}"
+
     # The anchor tag creates a hyperlink between itself and its closing tag.
     "Why don't you visit {a=https://renpy.org}Ren'Py's home page{/a}?"
     "Or {a=jump:more_text}here for more info{/a}."
