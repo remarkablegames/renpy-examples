@@ -1,20 +1,20 @@
+# https://github.com/VimislikArt/dragdropcode/blob/main/dragdrop.rpy
+init python:
+    def drag_placed(drags, drop) -> bool:
+        if not drop:
+            return False
+
+        store.draggable = drags[0].drag_name
+        store.droppable = drop.drag_name
+
+        return True
+
 # https://www.renpy.org/doc/html/drag_drop.html
 label drag_and_drop:
 
-    # https://github.com/VimislikArt/dragdropcode/blob/main/dragdrop.rpy
-    init python:
-        def drag_placed(drags, drop):
-            if not drop:
-                return
-
-            store.draggable = drags[0].drag_name
-            store.droppable = drop.drag_name
-
-            return True
-
-    show screen drag_sample1
-    call screen drag_sample2
-    show screen drag_sample3
+    show screen drag_example1
+    call screen drag_example2
+    show screen drag_example3
 
     if droppable == "The Left Circle":
         $ xpos_var = 150
@@ -35,13 +35,13 @@ label drag_and_drop:
 
     "The [draggable] was put in [droppable]"
 
-    hide screen drag_sample1
-    hide screen drag_sample2
-    hide screen drag_sample3
+    hide screen drag_example1
+    hide screen drag_example2
+    hide screen drag_example3
 
-    jump start
+    jump drag_and_drop_inventory
 
-screen drag_sample1():
+screen drag_example1():
     draggroup:
         drag:
             xpos 0.25
@@ -73,7 +73,7 @@ screen drag_sample1():
                 ypadding 20
                 text "Draggable"
 
-screen drag_sample2():
+screen drag_example2():
     draggroup:
         drag:
             drag_name "circle"
@@ -121,7 +121,7 @@ screen drag_sample2():
             draggable False
             droppable True
 
-screen drag_sample3():
+screen drag_example3():
     draggroup:
         drag:
             drag_name "The Left Circle"
