@@ -38,6 +38,9 @@ label start:
         "Text":
             jump text
 
+        "Timer":
+            jump timer
+
         "Tooltip":
             jump tooltip
 
