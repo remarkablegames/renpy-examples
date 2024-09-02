@@ -27,6 +27,9 @@ label start:
         "Inventory":
             jump inventory
 
+        "Kinetic Text":
+            jump kinetic_text
+
         "Map":
             jump map
 
