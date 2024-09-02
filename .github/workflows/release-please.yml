@@ -42,7 +42,7 @@ jobs:
 
       - name: Rename packages
         run: |
-          # e.g., "../dists/psych-101-1.2.3-linux.tar.bz2" -> "../dists/linux.tar.bz2"
+          # e.g., "../dists/renpy-examples-1.2.3-linux.tar.bz2" -> "../dists/linux.tar.bz2"
           for filename in ../dists/*; do mv "$filename" "../dists/${filename##*-}"; done
 
       - name: Build web
