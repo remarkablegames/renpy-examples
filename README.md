@@ -7,7 +7,7 @@
 [![build](https://github.com/remarkablegames/renpy-examples/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablegames/renpy-examples/actions/workflows/build.yml)
 [![lint](https://github.com/remarkablegames/renpy-examples/actions/workflows/lint.yml/badge.svg)](https://github.com/remarkablegames/renpy-examples/actions/workflows/lint.yml)
 
-📖 Understand how to write visual novels with Ren'Py examples.
+📖 Learn how to write visual novels with Ren'Py examples.
 
 Play the game on:
 
