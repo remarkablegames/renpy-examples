@@ -247,4 +247,8 @@ label glitch_example:
 
     e "I'm glitched and animated."
 
+    show layer master at glitch
+
+    "The background is glitched."
+
     jump start
