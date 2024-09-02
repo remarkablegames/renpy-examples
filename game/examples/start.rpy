@@ -9,8 +9,6 @@ label start:
     scene bg club
 
     menu:
-        "Which example do you want to see?"
-
         "Creator-Defined Statements (CDS)":
             jump creator_defined_statements
 
@@ -19,6 +17,9 @@ label start:
 
         "Drag and Drop":
             jump drag_and_drop
+
+        "Glitch":
+            jump glitch_example
 
         "Image":
             jump image_example
