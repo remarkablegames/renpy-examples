@@ -33,6 +33,9 @@ label start:
         "Map":
             jump map
 
+        "Parallax":
+            jump parallax
+
         "Python":
             jump python_example
 
