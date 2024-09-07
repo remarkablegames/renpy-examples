@@ -48,27 +48,27 @@ label parallax:
     init python:
         MouseParallax([
             (40, "farback"),
-            (20, "01"),
-            (0, "02"),
-            (-20, "03"),
-            (-40, "04"),
-            (-60, "05"),
-            (-80, "06"),
-            (-100, "07"),
-            (-120, "08"),
-            (-140, "09"),
+            (20, "back"),
+            (-20, "front1"),
+            (-20, "front2"),
+            (-40, "front3"),
+            (-60, "front4"),
+            (-80, "front5"),
+            (-100, "front6"),
+            (-120, "front7"),
+            (-140, "front8"),
         ])
 
     scene bg sky onlayer farback at Position(ypos = 1080)
-    show 01 forest onlayer 01 at Position(ypos = 1200)
-    show 02 forest onlayer 02 at Position(ypos = 1140)
-    show 03 forest onlayer 03 at Position(ypos = 1120)
-    show 04 forest onlayer 04 at Position(ypos = 1080)
-    show 05 particles onlayer 05 at Position(ypos = 1200)
-    show 06 forest onlayer 06 at Position(ypos = 1140)
-    show 07 particles onlayer 07 at Position(ypos = 1120)
-    show 08 bushes onlayer 08 at Position(ypos = 1080)
-    show 09 mist onlayer 09 at Position(ypos = 1200)
+    show 1 forest onlayer back at Position(ypos = 1200)
+    show 2 forest onlayer front1 at Position(ypos = 1140)
+    show 3 forest onlayer front2  at Position(ypos = 1120)
+    show 4 forest onlayer front3 at Position(ypos = 1080)
+    show 5 particles onlayer front4 at Position(ypos = 1200)
+    show 6 forest onlayer front5 at Position(ypos = 1140)
+    show 7 particles onlayer front6 at Position(ypos = 1120)
+    show 8 bushes onlayer front7 at Position(ypos = 1080)
+    show 9 mist onlayer front8 at Position(ypos = 1200)
 
     pause
 
