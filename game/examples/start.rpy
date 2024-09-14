@@ -51,6 +51,9 @@ label start:
         "Tooltip":
             jump tooltip
 
+        "Transform":
+            jump transform_example
+
         "Voice":
             jump voice
 
