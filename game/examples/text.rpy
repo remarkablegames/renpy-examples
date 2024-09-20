@@ -22,6 +22,9 @@ label text:
     # Ren'Py will close all tags that are open at the end of the text block.
     "{size=+20}This is big!"
 
+    # https://videlais.com/2018/07/27/renpy-python-part-5-custom-text-tags/
+    e "This is also {big=3}BIG!"
+
     # https://www.renpy.org/doc/html/text.html#fonts
     "{font=OldLondon.ttf}Ren'Py supports TrueType/OpenType fonts and collections, and Image-Based fonts.{/font}"
 
@@ -81,3 +84,11 @@ label more_text:
     pause 5
 
     jump start
+
+init python:
+    # custom text tag
+    def big_tag(tag, argument, contents):
+        size = int(argument) * 20
+        return [(renpy.TEXT_TAG, "size={}".format(size))] + contents + [(renpy.TEXT_TAG, "/size")]
+
+    config.custom_text_tags["big"] = big_tag
