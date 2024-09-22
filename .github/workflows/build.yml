@@ -17,10 +17,11 @@ jobs:
         with:
           web: true
 
+      - name: Set version
+        run: sed -i -e 's/1.0.0-alpha/${{ github.sha }}/g' game/options.rpy
+
       - name: Build web
-        run: |
-          renpy-launcher web_build . --destination web
-          cp web-presplash.jpg web/web-presplash.jpg
+        run: renpy-launcher web_build . --destination web
 
       - name: Deploy
         if: github.ref_name == 'master'
