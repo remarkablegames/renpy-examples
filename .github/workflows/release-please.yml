@@ -34,8 +34,15 @@ jobs:
         with:
           web: true
 
-      - name: Remove extraneous files packages
-        run: rm -rf screenshots
+      - name: Delete unnecessary files
+        run: >
+          find .
+          ! -name 'progressive_download.txt'
+          ! -name 'version.txt'
+          ! -name 'web-presplash.jpg'
+          ! -path "*/.*"
+          ! -path "*game*"
+          -delete
 
       - name: Build packages
         run: renpy-launcher distribute . --dest ../dists
