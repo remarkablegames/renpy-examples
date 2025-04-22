@@ -9,6 +9,9 @@ label start:
     scene bg club
 
     menu:
+        "Animation":
+            jump animation
+
         "Creator-Defined Statements (CDS)":
             jump creator_defined_statements
 
