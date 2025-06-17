@@ -12,6 +12,9 @@ label start:
         "Animation":
             jump animation
 
+        "Cardgame":
+            jump cardgame
+
         "Creator-Defined Statements (CDS)":
             jump creator_defined_statements
 
