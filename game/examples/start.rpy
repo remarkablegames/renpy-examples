@@ -45,6 +45,9 @@ label start:
         "RPG Stats":
             jump rpg_stats
 
+        "Screens":
+            jump screens
+
         "Text":
             jump text
 
