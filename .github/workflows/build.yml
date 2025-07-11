@@ -21,6 +21,15 @@ jobs:
       - name: Set version
         run: sed -i -e 's/1.0.0-alpha/${{ github.sha }}/g' game/options.rpy
 
+      - name: Delete unnecessary files
+        run: >
+          find .
+          ! -name 'progressive_download.txt'
+          ! -name 'web-presplash.jpg'
+          ! -path "*/.*"
+          ! -path "*game*"
+          -delete
+
       - name: Build web
         run: renpy-launcher web_build . --destination web
 
