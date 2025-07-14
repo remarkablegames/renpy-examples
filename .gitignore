@@ -4,13 +4,13 @@
 
 # Compiled script files. These are important for saving, and so should
 # be preserved by developer and build systems after the game has been released.
-/game/**/*.rpyc
-/game/**/*.rpymc
+*.rpyc
+*.rpymc
 
 # Files Ren'Py can generate.
-/game/**/*.bak
-/game/**/*.new
-/game/**/*.old
+*.bak
+*.new
+*.old
 
 # Error, log, and output files.
 /errors.txt
