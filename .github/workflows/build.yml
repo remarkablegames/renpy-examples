@@ -24,8 +24,8 @@ jobs:
       - name: Delete unnecessary files
         run: >
           find .
-          ! -name 'progressive_download.txt'
-          ! -name 'web-presplash.jpg'
+          ! -name "progressive_download.txt"
+          ! -name "web-presplash.*"
           ! -path "*/.*"
           ! -path "*game*"
           -delete
@@ -33,7 +33,12 @@ jobs:
       - name: Build web
         run: renpy-launcher web_build . --destination web
 
-      - name: Deploy
+      - name: Update presplash image
+        run: |
+          rm web/web-presplash.jpg
+          mv web-presplash.webp web
+
+      - name: Deploy site
         if: github.ref_name == 'master'
         uses: remarkablemark/gitploy-action@v1
         with:
