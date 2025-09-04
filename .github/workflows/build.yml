@@ -37,6 +37,7 @@ jobs:
         run: |
           rm web/web-presplash.jpg
           mv web-presplash.webp web
+          grep -lr web-presplash.jpg | xargs sed -i 's/web-presplash.jpg/web-presplash.webp/g'
 
       - name: Deploy site
         if: github.ref_name == 'master'
