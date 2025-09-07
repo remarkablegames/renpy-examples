@@ -7,6 +7,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DIRECTORY: web
 
     steps:
       - name: Checkout repository
@@ -31,23 +33,23 @@ jobs:
           -delete
 
       - name: Build web
-        run: renpy-launcher web_build . --destination web
+        run: renpy-launcher web_build . --destination $DIRECTORY
 
       - name: Update presplash image
         run: |
-          rm web/web-presplash.jpg
-          mv web-presplash.webp web
-          grep -lr web-presplash.jpg | xargs sed -i 's/web-presplash.jpg/web-presplash.webp/g'
+          rm $DIRECTORY/web-presplash.jpg
+          mv web-presplash.webp $DIRECTORY
+          grep -lr web-presplash.jpg $DIRECTORY | xargs sed -i 's/web-presplash.jpg/web-presplash.webp/g'
 
       - name: Deploy site
         if: github.ref_name == 'master'
         uses: remarkablemark/gitploy-action@v1
         with:
-          directory: web
+          directory: $DIRECTORY
 
       - name: Upload artifacts
         if: github.ref_name == 'master'
         uses: actions/upload-artifact@v4
         with:
           name: web_build
-          path: web
+          path: $DIRECTORY
