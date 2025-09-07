@@ -21,9 +21,9 @@ save_dump.txt
 traceback.txt
 
 # Launcher-generated files.
-/dialogue.tab
-/dialogue.txt
-/strings.json
+dialogue.tab
+dialogue.txt
+strings.json
 
 # Compiled source
 *.pyc
