@@ -45,11 +45,11 @@ jobs:
         if: github.ref_name == 'master'
         uses: remarkablemark/gitploy-action@v1
         with:
-          directory: $DIRECTORY
+          directory: ${{ env.DIRECTORY }}
 
       - name: Upload artifacts
         if: github.ref_name == 'master'
         uses: actions/upload-artifact@v4
         with:
           name: web_build
-          path: $DIRECTORY
+          path: ${{ env.DIRECTORY }}
