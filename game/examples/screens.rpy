@@ -14,7 +14,7 @@ screen hello_world():
 
      text "Hello, World." size 200
 
-screen dismiss_test:
+screen dismiss_test():
 
     dismiss action Return()
 
