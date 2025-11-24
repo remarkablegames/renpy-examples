@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Commitlint
-        uses: remarkablemark/commitlint@v1
+        uses: remarkablemark/commitlint@v2
         with:
           checkout: true
