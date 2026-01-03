@@ -4,12 +4,12 @@ on: [push, pull_request]
 permissions:
   contents: write
 
+env:
+  WEB_BUILD_DEST: web
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DIRECTORY: web
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Ren'Py
         uses: remarkablegames/setup-renpy@v2
         with:
-          cli-version: 8.4.1
+          cli-version: 8.5.1
           web: true
 
       - name: Set version
@@ -33,23 +33,17 @@ jobs:
           -delete
 
       - name: Build web
-        run: renpy-launcher web_build . --destination $DIRECTORY
-
-      - name: Update presplash image
-        run: |
-          rm $DIRECTORY/web-presplash.jpg
-          mv web-presplash.webp $DIRECTORY
-          grep -lr web-presplash.jpg $DIRECTORY | xargs sed -i 's/web-presplash.jpg/web-presplash.webp/g'
+        run: renpy-launcher web_build . --destination $WEB_BUILD_DEST
 
       - name: Deploy site
         if: github.ref_name == 'master'
         uses: remarkablemark/gitploy-action@v1
         with:
-          directory: ${{ env.DIRECTORY }}
+          directory: ${{ env.WEB_BUILD_DEST }}
 
       - name: Upload artifacts
         if: github.ref_name == 'master'
         uses: actions/upload-artifact@v6
         with:
           name: web_build
-          path: ${{ env.DIRECTORY }}
+          path: ${{ env.WEB_BUILD_DEST }}
