@@ -39,6 +39,13 @@ label start:
         "Parallax":
             jump parallax
 
+        "➡️ Next":
+            jump start_next
+
+
+label start_next:
+
+    menu:
         "Python":
             jump python_example
 
@@ -65,3 +72,6 @@ label start:
 
         "End":
             jump end
+
+        "⬅️ Back":
+            jump start
