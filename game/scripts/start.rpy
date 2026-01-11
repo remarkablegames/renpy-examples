@@ -55,6 +55,9 @@ label start_next:
         "Screens":
             jump screens
 
+        "Shader":
+            jump shader
+
         "Text":
             jump text
 
