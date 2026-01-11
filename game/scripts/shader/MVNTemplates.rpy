@@ -462,7 +462,7 @@ transform Regicide:
     #and 
     #repeat 
     #to make RenPy actually render it properly.
-    
+
 transform VirtualBoy:
     mesh True
     #Why
