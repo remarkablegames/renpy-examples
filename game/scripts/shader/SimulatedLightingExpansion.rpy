@@ -27,7 +27,7 @@ init python:
      config.underlay.append(renpy.Keymap(mousemonitor = Show("display_coordinates")))
      config.keymap["mousemonitor"] = ['alt_K_m']
 
-init -1500 python:
+init -999 python:
     MVNMouseX = 0.0
     MVNMouseY = 0.0
     MVNRPYMouseX = None
