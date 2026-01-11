@@ -3,15 +3,30 @@ label shader:
 
     scene bg lecturehall
     show sylvie blue surprised
+    e "No shader"
 
-    # Spotlight transform
+    show bg lecturehall at NewSimLight
+    e "NewSimLight"
+    show bg lecturehall at reset
+
+    camera at MouseKeyLight
+    e "MouseKeyLight"
+    camera
+
+    camera at MouseRimLight
+    e "MouseRimLight"
+    camera
+
     camera at Spotlight(0.5, 0.5)
-    e "Spotlight transform. Shine a spotlight using:\n{b}camera at Spotlight(X,Y)"
-    camera at reset
+    e "Spotlight"
+    camera
 
-    # Flashlight mode transform
     camera at FlashLightMode
-    e "Flashlight mode transform. It follows your mouse:\n{b}camera at FlashLightMode"
+    e "FlashLightMode"
+    camera
+
+    camera at CoolWarmLighting
+    e "CoolWarmLighting"
     camera
 
     jump start
