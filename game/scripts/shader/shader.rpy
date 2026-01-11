@@ -1,10 +1,15 @@
+##
 # https://makevisualnovels.itch.io/make-visual-novels-rspv1
+##
 label shader:
 
     scene bg lecturehall
     show sylvie blue surprised
     e "No shader"
 
+    ##
+    # SimulatedLightingExpansion
+    ##
     show bg lecturehall at NewSimLight
     e "NewSimLight"
     show bg lecturehall at reset
@@ -25,8 +30,8 @@ label shader:
     e "FlashLightMode"
     camera
 
-    camera at CoolWarmLighting
+    show bg lecturehall at CoolWarmLighting
     e "CoolWarmLighting"
-    camera
+    show bg lecturehall at reset
 
     jump start

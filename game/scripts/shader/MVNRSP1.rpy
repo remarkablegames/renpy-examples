@@ -22,19 +22,18 @@ init python:
     uniform float u_aberrationAmount;
     """
 
-
     simulatedLightingVars ="""
-        uniform vec3 u_back_light_color; // Color of the back light
-        uniform vec3 u_fill_light_color; // Color of the fill light
-        uniform vec3 u_key_light_color; // Color of the key light
-        uniform vec2 u_back_light_direction; // Direction of the back light
-        uniform vec2 u_back_light_position;
-        uniform vec2 u_fill_light_direction; // Direction of the fill light
-        uniform vec2 u_key_light_position; // Position of the key light
-        uniform float u_back_light_intensity; // Intensity of the back light
-        uniform float u_fill_light_intensity; // Intensity of the fill light
-        uniform float u_key_light_intensity; // Intensity of the key light
-        uniform float u_key_light_radius; // Radius of the key light
+    uniform vec3 u_back_light_color; // Color of the back light
+    uniform vec3 u_fill_light_color; // Color of the fill light
+    uniform vec3 u_key_light_color; // Color of the key light
+    uniform vec2 u_back_light_direction; // Direction of the back light
+    uniform vec2 u_back_light_position;
+    uniform vec2 u_fill_light_direction; // Direction of the fill light
+    uniform vec2 u_key_light_position; // Position of the key light
+    uniform float u_back_light_intensity; // Intensity of the back light
+    uniform float u_fill_light_intensity; // Intensity of the fill light
+    uniform float u_key_light_intensity; // Intensity of the key light
+    uniform float u_key_light_radius; // Radius of the key light
     """
 
     newSimLightVars = """
