@@ -11,7 +11,7 @@
 
 Play the game on:
 
-- [remarkablegames](https://remarkablegames.org/renpy-examples)
+- [remarkablegames](https://remarkablegames.org/renpy-examples/)
 
 ## Prerequisites
 
