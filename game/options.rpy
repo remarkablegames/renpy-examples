@@ -143,7 +143,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "renpy-examples-1717801209"
+define config.save_directory = "renpy-examples-1768026360"
 
 
 ## Icon ########################################################################
