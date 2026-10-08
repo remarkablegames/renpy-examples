@@ -1,15 +1,16 @@
 name: build
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
 
-env:
-  WEB_BUILD_DEST: web
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -25,25 +26,53 @@ jobs:
 
       - name: Delete unnecessary files
         run: >
-          find .
-          ! -name "progressive_download.txt"
-          ! -name "web-presplash.*"
-          ! -path "*/.*"
-          ! -path "*game*"
+          find . -type f
+          ! -path '*/.*'
+          ! -path './game/*'
+          ! -path './icon.*'
+          ! -path './progressive_download.txt'
+          ! -path './web-*'
           -delete
 
+      # build first so web artifacts are not included
+      - name: Build desktop distributions
+        if: github.event_name == 'workflow_dispatch'
+        run: renpy-launcher distribute . --dest ../dists
+
       - name: Build web
-        run: renpy-launcher web_build . --destination $WEB_BUILD_DEST
+        run: renpy-launcher web_build . --destination web
+
+      - name: Page test
+        uses: remarkablemark/page-test-action@v1
+        with:
+          url: http://localhost:8000
+          start: python -m http.server --directory web
+          wait-on: http://localhost:8000
+
+      - name: Google Analytics
+        uses: remarkablemark/google-analytics-action@v1
+        with:
+          html-path: web/index.html
+          measurement-id: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 
       - name: Deploy site
-        if: github.ref_name == 'master'
+        if: github.event_name != 'workflow_dispatch' && github.ref_name == 'master'
         uses: remarkablemark/gitploy-action@v1
         with:
-          directory: ${{ env.WEB_BUILD_DEST }}
+          directory: web
 
-      - name: Upload artifacts
-        if: github.ref_name == 'master'
+      - name: Prepare distribution artifact
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          mkdir artifact
+          cp ../dists/*-win.zip artifact
+          cp ../dists/*-linux.tar.bz2 artifact
+          cp ../dists/*-mac.zip artifact
+          cp -R web artifact
+
+      - name: Upload distribution artifact
+        if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v7
         with:
-          name: web_build
-          path: ${{ env.WEB_BUILD_DEST }}
+          name: distributions
+          path: artifact
