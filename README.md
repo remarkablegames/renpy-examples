@@ -59,7 +59,7 @@ Press `Shift`+`D` to open the developer menu.
 Clear the cache:
 
 ```sh
-find game -name "*.rpyc" -delete
+find game -type f -name '*.rpyc' -delete
 ```
 
 Or open `Ren'Py Launcher` > `Force Recompile`:
