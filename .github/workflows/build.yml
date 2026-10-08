@@ -49,7 +49,8 @@ jobs:
           start: python -m http.server --directory web
           wait-on: http://localhost:8000
 
-      - name: Google Analytics
+      - name: Inject Google Analytics
+        if: github.event_name != 'workflow_dispatch' && github.ref_name == 'master'
         uses: remarkablemark/google-analytics-action@v1
         with:
           html-path: web/index.html
