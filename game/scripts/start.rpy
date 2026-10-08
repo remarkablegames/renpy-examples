@@ -30,6 +30,9 @@ label start:
         "Inventory":
             jump inventory
 
+        "JavaScript":
+            jump javascript
+
         "Kinetic Text":
             jump kinetic_text
 
